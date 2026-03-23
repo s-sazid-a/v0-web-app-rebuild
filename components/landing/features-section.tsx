@@ -2,49 +2,56 @@
 
 import { ArrowRight, Barcode, Camera, UserCog, UtensilsCrossed, Users, BarChart3 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 const features = [
   {
     icon: Barcode,
     title: "Barcode Scanner",
-    description: "Instantly analyze packaged foods for nutritional information with a simple scan.",
+    description: "Instantly analyze packaged foods for nutritional information, allergens, and health impact with a simple scan.",
     gradient: "from-[#6E00FF] to-[#FF36B9]",
-    demo: "Try Scanning",
+    demo: "Try Scanner",
+    href: "/dashboard/meals"
   },
   {
     icon: Camera,
     title: "AI Food Recognition",
-    description: "Point your camera at any meal to get real-time nutritional breakdown powered by AI.",
+    description: "Point your camera at any meal to get real-time nutritional breakdown and personalized recommendations.",
     gradient: "from-[#00D8FF] to-[#6E00FF]",
     demo: "See It In Action",
+    href: "/dashboard/meals"
   },
   {
     icon: UserCog,
     title: "Health Personalization",
-    description: "Get customized health plans based on your unique body metrics and goals.",
+    description: "Receive tailored health insights and recommendations based on your unique profile, goals, and progress.",
     gradient: "from-[#FF36B9] to-[#00D8FF]",
-    demo: "Personalize Now",
+    demo: "Explore Personalization",
+    href: "/dashboard/profile"
   },
   {
     icon: UtensilsCrossed,
     title: "AI Meal Planning",
-    description: "Receive intelligent meal suggestions that match your dietary preferences and health targets.",
+    description: "Let our AI create perfect meal plans matching your dietary requirements, preferences, and nutritional needs.",
     gradient: "from-[#6E00FF] to-[#00D8FF]",
-    demo: "Plan Meals",
+    demo: "View Sample Plans",
+    href: "/dashboard/meals"
   },
   {
     icon: Users,
     title: "Expert Consultations",
-    description: "Connect with certified nutritionists and health experts for personalized guidance.",
+    description: "Connect with certified nutritionists and health coaches for personalized guidance and support.",
     gradient: "from-[#00D8FF] to-[#FF36B9]",
-    demo: "Book Session",
+    demo: "Meet Our Experts",
+    href: "/dashboard/insights"
   },
   {
     icon: BarChart3,
     title: "Data Visualization",
-    description: "Track your progress with beautiful charts and actionable insights over time.",
+    description: "Track your progress with interactive, beautiful, and easy-to-understand health and nutrition dashboards.",
     gradient: "from-[#FF36B9] to-[#6E00FF]",
-    demo: "View Analytics",
+    demo: "Explore Dashboards",
+    href: "/dashboard/metrics"
   },
 ]
 
@@ -59,11 +66,10 @@ export function FeaturesSection() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
-            Powerful <span className="gradient-text">Features</span>
+            Cutting-Edge <span className="gradient-text">Features</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Experience the future of health tracking with our comprehensive suite of
-            AI-powered tools designed to transform your wellness journey.
+            Discover how our AI-powered platform revolutionizes your health journey with these next-generation capabilities.
           </p>
         </div>
 
@@ -88,13 +94,15 @@ export function FeaturesSection() {
                 <p className="text-gray-400 mb-4 leading-relaxed">{feature.description}</p>
 
                 {/* Interactive demo button */}
-                <Button
-                  variant="ghost"
-                  className="p-0 h-auto text-transparent bg-clip-text bg-gradient-to-r from-[#6E00FF] to-[#00D8FF] hover:bg-transparent group-hover:translate-x-1 transition-transform"
-                >
-                  {feature.demo}
-                  <ArrowRight className="ml-2 w-4 h-4 text-[#00D8FF]" />
-                </Button>
+                <Link href={feature.href}>
+                  <Button
+                    variant="ghost"
+                    className="p-0 h-auto text-[#00D8FF] hover:text-[#00D8FF] hover:bg-transparent group-hover:translate-x-1 transition-transform"
+                  >
+                    {feature.demo}
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </Link>
               </div>
 
               {/* Hover glow effect */}

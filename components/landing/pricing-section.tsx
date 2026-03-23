@@ -1,56 +1,62 @@
 "use client"
 
-import { Check } from "lucide-react"
+import { Check, X, Shield, Headphones, Monitor, XCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
 const plans = [
   {
     name: "Starter",
-    price: "Free",
-    description: "Perfect for getting started with health tracking",
+    subtitle: "Perfect for beginners",
+    price: "$0",
+    period: "/month",
     features: [
-      "Basic food logging",
-      "Barcode scanner",
-      "Daily calorie tracking",
-      "Weekly progress reports",
-      "Community access",
+      { name: "Basic food scanning", included: true },
+      { name: "Limited meal recommendations", included: true },
+      { name: "Standard nutrition tracking", included: true },
+      { name: "Advanced health analytics", included: false },
+      { name: "Expert consultations", included: false },
     ],
-    cta: "Get Started",
+    cta: "Sign Up Free",
     popular: false,
   },
   {
     name: "Pro",
+    subtitle: "For health enthusiasts",
     price: "$9.99",
     period: "/month",
-    description: "Advanced features for serious health enthusiasts",
     features: [
-      "Everything in Starter",
-      "AI food recognition",
-      "Personalized meal plans",
-      "Advanced analytics",
-      "Priority support",
-      "Custom goals tracking",
+      { name: "Unlimited food scanning", included: true },
+      { name: "Personalized meal plans", included: true },
+      { name: "Advanced nutrition insights", included: true },
+      { name: "Health trend analytics", included: true },
+      { name: "1-on-1 expert consultations", included: true },
     ],
-    cta: "Start Pro Trial",
+    cta: "Choose Pro",
     popular: true,
   },
   {
     name: "Premium",
+    subtitle: "Ultimate health experience",
     price: "$19.99",
     period: "/month",
-    description: "Complete health transformation suite",
     features: [
-      "Everything in Pro",
-      "1-on-1 expert consultations",
-      "DNA-based recommendations",
-      "Family account sharing",
-      "API access",
-      "White-glove onboarding",
+      { name: "Everything in Pro", included: true },
+      { name: "Priority updates & features", included: true },
+      { name: "Health community access", included: true },
+      { name: "Advanced health reporting", included: true },
+      { name: "Monthly expert consultation", included: true },
     ],
-    cta: "Go Premium",
+    cta: "Get Premium",
     popular: false,
   },
+]
+
+const benefits = [
+  { icon: Shield, text: "Secure Data" },
+  { icon: Headphones, text: "24/7 Support" },
+  { icon: Monitor, text: "Multiple Devices" },
+  { icon: XCircle, text: "Cancel Anytime" },
 ]
 
 export function PricingSection() {
@@ -64,15 +70,15 @@ export function PricingSection() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
-            Simple <span className="gradient-text">Pricing</span>
+            Choose Your <span className="gradient-text">Plan</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Choose the plan that fits your health journey. All plans include a 14-day free trial.
+            Start your health transformation with a plan that fits your needs. Upgrade or downgrade anytime.
           </p>
         </div>
 
         {/* Pricing Grid */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-12">
           {plans.map((plan, index) => (
             <div
               key={index}
@@ -80,7 +86,7 @@ export function PricingSection() {
             >
               {/* Popular badge */}
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-[#6E00FF] to-[#00D8FF] rounded-full text-sm font-medium text-white">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-[#6E00FF] to-[#00D8FF] rounded-full text-sm font-medium text-white z-10">
                   Most Popular
                 </div>
               )}
@@ -88,27 +94,33 @@ export function PricingSection() {
               <div
                 className={`h-full glass rounded-2xl p-8 ${
                   plan.popular
-                    ? "border-[#6E00FF]/50 glow-purple"
+                    ? "border border-[#6E00FF]/50 glow-purple"
                     : ""
                 }`}
               >
-                <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
-                <p className="text-gray-400 mb-6">{plan.description}</p>
+                <h3 className="text-2xl font-bold text-white mb-1">{plan.name}</h3>
+                <p className="text-gray-400 text-sm mb-6">{plan.subtitle}</p>
 
                 <div className="mb-6">
                   <span className="text-4xl font-bold text-white">{plan.price}</span>
-                  {plan.period && (
-                    <span className="text-gray-400">{plan.period}</span>
-                  )}
+                  <span className="text-gray-400">{plan.period}</span>
                 </div>
 
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-3 text-gray-300">
-                      <div className="w-5 h-5 rounded-full bg-gradient-to-r from-[#6E00FF] to-[#00D8FF] flex items-center justify-center flex-shrink-0">
-                        <Check className="w-3 h-3 text-white" />
-                      </div>
-                      {feature}
+                    <li key={i} className="flex items-center gap-3">
+                      {feature.included ? (
+                        <div className="w-5 h-5 rounded-full bg-gradient-to-r from-[#6E00FF] to-[#00D8FF] flex items-center justify-center flex-shrink-0">
+                          <Check className="w-3 h-3 text-white" />
+                        </div>
+                      ) : (
+                        <div className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
+                          <X className="w-3 h-3 text-gray-500" />
+                        </div>
+                      )}
+                      <span className={feature.included ? "text-gray-300" : "text-gray-500"}>
+                        {feature.name}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -127,6 +139,19 @@ export function PricingSection() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* All plans include */}
+        <div className="text-center">
+          <p className="text-gray-400 mb-4">All plans include:</p>
+          <div className="flex flex-wrap justify-center gap-6">
+            {benefits.map((benefit, index) => (
+              <div key={index} className="flex items-center gap-2 text-gray-300">
+                <benefit.icon className="w-5 h-5 text-[#00D8FF]" />
+                <span>{benefit.text}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

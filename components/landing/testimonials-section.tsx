@@ -1,39 +1,34 @@
 "use client"
 
-import { Star } from "lucide-react"
+import { Star, TrendingDown, Heart, Sparkles } from "lucide-react"
 
 const testimonials = [
   {
-    name: "Sarah Chen",
-    role: "Fitness Enthusiast",
+    name: "Emma Rodriguez",
     content:
-      "HealthHyperAI completely transformed my approach to nutrition. The AI food scanner is incredibly accurate and the personalized recommendations helped me lose 20 pounds!",
-    rating: 5,
-    avatar: "SC",
-  },
-  {
-    name: "Marcus Johnson",
-    role: "Software Developer",
-    content:
-      "As someone with a busy schedule, the meal planning feature is a lifesaver. It suggests quick, healthy meals that fit my macros perfectly.",
-    rating: 5,
-    avatar: "MJ",
-  },
-  {
-    name: "Emily Rodriguez",
-    role: "Healthcare Professional",
-    content:
-      "I recommend HealthHyperAI to all my patients. The data visualization and insights are professional-grade and help people stay accountable.",
-    rating: 5,
+      "The AI-powered meal recommendations completely changed how I approach nutrition. I've lost 15 pounds and my energy levels are through the roof!",
+    badge: "Lost 15 pounds in 8 weeks",
+    badgeIcon: TrendingDown,
+    badgeColor: "from-[#6E00FF] to-[#00D8FF]",
     avatar: "ER",
   },
   {
-    name: "David Kim",
-    role: "Marathon Runner",
+    name: "Michael Chen",
     content:
-      "The personalized nutrition insights have optimized my training routine. My recovery time has improved significantly since using the app.",
-    rating: 5,
-    avatar: "DK",
+      "As a busy professional, I never had time to plan my meals. The barcode scanner and instant recommendations have made healthy eating effortless.",
+    badge: "Improved diet quality score by 68%",
+    badgeIcon: Sparkles,
+    badgeColor: "from-[#00D8FF] to-[#FF36B9]",
+    avatar: "MC",
+  },
+  {
+    name: "Sophia Williams",
+    content:
+      "The expert consultations combined with AI insights helped me identify food sensitivities I never knew I had. My digestive issues are gone!",
+    badge: "Eliminated digestive issues in 3 weeks",
+    badgeIcon: Heart,
+    badgeColor: "from-[#FF36B9] to-[#6E00FF]",
+    avatar: "SW",
   },
 ]
 
@@ -50,25 +45,26 @@ export function TestimonialsSection() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
-            Loved by <span className="gradient-text">Thousands</span>
+            Success <span className="gradient-text">Stories</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            See what our community has to say about their health transformation journey.
+            Hear from our users who have transformed their health journey with HealthHyperAI.
           </p>
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
               className="glass rounded-2xl p-6 hover:bg-white/10 transition-all"
             >
-              {/* Rating */}
-              <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                ))}
+              {/* Avatar and Name */}
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#6E00FF] to-[#00D8FF] flex items-center justify-center text-white font-semibold">
+                  {testimonial.avatar}
+                </div>
+                <div className="font-semibold text-white">{testimonial.name}</div>
               </div>
 
               {/* Content */}
@@ -76,15 +72,11 @@ export function TestimonialsSection() {
                 &quot;{testimonial.content}&quot;
               </p>
 
-              {/* Author */}
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#6E00FF] to-[#00D8FF] flex items-center justify-center text-white font-semibold">
-                  {testimonial.avatar}
-                </div>
-                <div>
-                  <div className="font-semibold text-white">{testimonial.name}</div>
-                  <div className="text-sm text-gray-400">{testimonial.role}</div>
-                </div>
+              {/* Badge */}
+              <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r ${testimonial.badgeColor} bg-opacity-20`}
+                   style={{ background: `linear-gradient(to right, rgba(110,0,255,0.2), rgba(0,216,255,0.2))` }}>
+                <testimonial.badgeIcon className="w-4 h-4 text-[#00D8FF]" />
+                <span className="text-sm text-white">{testimonial.badge}</span>
               </div>
             </div>
           ))}

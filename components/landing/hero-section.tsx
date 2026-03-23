@@ -47,12 +47,12 @@ export function HeroSection() {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <Link href="/dashboard">
+              <Link href="/waitlist">
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-[#6E00FF] to-[#00D8FF] hover:opacity-90 text-white border-0 px-8 py-6 text-lg glow-purple"
                 >
-                  Start Your Journey
+                  Get Started
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>

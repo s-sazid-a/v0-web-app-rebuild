@@ -64,7 +64,7 @@ export function Header() {
                 Sign In
               </Button>
             </Link>
-            <Link href="/dashboard">
+            <Link href="/waitlist">
               <Button className="bg-gradient-to-r from-[#6E00FF] to-[#00D8FF] hover:opacity-90 text-white border-0">
                 Get Started Free
               </Button>
@@ -113,7 +113,7 @@ export function Header() {
                     Sign In
                   </Button>
                 </Link>
-                <Link href="/dashboard">
+                <Link href="/waitlist">
                   <Button className="w-full bg-gradient-to-r from-[#6E00FF] to-[#00D8FF] hover:opacity-90 text-white border-0">
                     Get Started Free
                   </Button>

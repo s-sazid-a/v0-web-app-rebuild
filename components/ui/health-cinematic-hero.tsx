@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Heart, Activity, Flame, Droplets } from "lucide-react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 if (typeof window !== "undefined") {
@@ -336,14 +337,14 @@ export function HealthCinematicHero({
           {ctaDescription}
         </p>
         <div className="flex flex-col sm:flex-row gap-6">
-          <button className="btn-gradient-health flex items-center justify-center gap-3 px-8 py-4 rounded-[1.25rem] font-semibold text-lg">
+          <Link href="/waitlist" className="btn-gradient-health flex items-center justify-center gap-3 px-8 py-4 rounded-[1.25rem] font-semibold text-lg">
             <Flame className="w-5 h-5" />
-            Start Your Journey
-          </button>
-          <button className="btn-outline-health flex items-center justify-center gap-3 px-8 py-4 rounded-[1.25rem] font-semibold text-lg">
+            Get Started
+          </Link>
+          <Link href="/dashboard" className="btn-outline-health flex items-center justify-center gap-3 px-8 py-4 rounded-[1.25rem] font-semibold text-lg">
             <Activity className="w-5 h-5" />
-            Watch Demo
-          </button>
+            Try Demo
+          </Link>
         </div>
       </div>
 

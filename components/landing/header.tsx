@@ -1,20 +1,24 @@
 "use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X, Heart } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 const navigation = [
-  { name: "Home", href: "#home" },
-  { name: "Features", href: "#features" },
-  { name: "How It Works", href: "#how-it-works" },
-  { name: "Pricing", href: "#pricing" },
-  { name: "Testimonials", href: "#testimonials" },
+  { name: "Home", href: "/" },
+  { name: "Features", href: "/features" },
+  { name: "How It Works", href: "/how-it-works" },
+  { name: "Pricing", href: "/pricing" },
+  { name: "Testimonials", href: "/testimonials" },
+  { name: "DemoApp", href: "/dashboard" },
 ]
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass">
@@ -37,7 +41,13 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-300 hover:text-white transition-colors text-sm font-medium"
+                className={cn(
+                  "text-sm font-medium transition-colors",
+                  pathname === item.href
+                    ? "text-[#00D8FF]"
+                    : "text-gray-300 hover:text-white",
+                  item.name === "DemoApp" && "px-3 py-1.5 rounded-lg bg-gradient-to-r from-[#6E00FF]/20 to-[#00D8FF]/20 border border-[#6E00FF]/30"
+                )}
               >
                 {item.name}
               </Link>
@@ -82,7 +92,13 @@ export function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-gray-300 hover:text-white transition-colors"
+                  className={cn(
+                    "transition-colors",
+                    pathname === item.href
+                      ? "text-[#00D8FF]"
+                      : "text-gray-300 hover:text-white",
+                    item.name === "DemoApp" && "text-[#00D8FF] font-medium"
+                  )}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}

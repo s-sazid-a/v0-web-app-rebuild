@@ -11,7 +11,7 @@ const features = [
     description: "Instantly analyze packaged foods for nutritional information, allergens, and health impact with a simple scan.",
     gradient: "from-[#6E00FF] to-[#FF36B9]",
     demo: "Try Scanner",
-    href: "/dashboard/meals"
+    href: "/how-it-works"
   },
   {
     icon: Camera,
@@ -19,7 +19,7 @@ const features = [
     description: "Point your camera at any meal to get real-time nutritional breakdown and personalized recommendations.",
     gradient: "from-[#00D8FF] to-[#6E00FF]",
     demo: "See It In Action",
-    href: "/dashboard/meals"
+    href: "/how-it-works"
   },
   {
     icon: UserCog,
@@ -27,7 +27,7 @@ const features = [
     description: "Receive tailored health insights and recommendations based on your unique profile, goals, and progress.",
     gradient: "from-[#FF36B9] to-[#00D8FF]",
     demo: "Explore Personalization",
-    href: "/dashboard/profile"
+    href: "/how-it-works"
   },
   {
     icon: UtensilsCrossed,

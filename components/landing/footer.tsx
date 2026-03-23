@@ -5,10 +5,10 @@ import { Heart, Twitter, Instagram, Github, Linkedin } from "lucide-react"
 
 const footerLinks = {
   product: [
-    { name: "Features", href: "#features" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "API", href: "#" },
-    { name: "Integrations", href: "#" },
+    { name: "Features", href: "/features" },
+    { name: "Pricing", href: "/pricing" },
+    { name: "How It Works", href: "/how-it-works" },
+    { name: "DemoApp", href: "/dashboard" },
   ],
   company: [
     { name: "About", href: "#" },

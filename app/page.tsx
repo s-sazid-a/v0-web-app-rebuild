@@ -8,7 +8,8 @@ export default function HomePage() {
       <Header />
       <HealthCinematicHero 
         brandName="HHAI"
-        particleWords={["HHAI", "AI-Powered", "Health Revolution", "HyperHealth AI", "Your Health", "Reimagined"]}
+        tagline1="AI-Powered"
+        tagline2="Health Revolution"
         cardHeading="Your Health, Reimagined."
         cardDescription={
           <>

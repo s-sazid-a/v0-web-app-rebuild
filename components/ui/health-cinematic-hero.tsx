@@ -6,7 +6,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Heart, Activity, Flame, Droplets } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { ParticleTextEffect } from "@/components/ui/particle-text-effect";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -172,11 +171,10 @@ const INJECTED_STYLES = `
   }
 `;
 
-const DEFAULT_PARTICLE_WORDS = ["HHAI", "AI-Powered", "Health Revolution", "HyperHealth AI", "Your Health", "Reimagined"];
-
 export interface HealthCinematicHeroProps extends React.HTMLAttributes<HTMLDivElement> {
   brandName?: string;
-  particleWords?: string[];
+  tagline1?: string;
+  tagline2?: string;
   cardHeading?: string;
   cardDescription?: React.ReactNode;
   metricValue?: number;
@@ -187,7 +185,8 @@ export interface HealthCinematicHeroProps extends React.HTMLAttributes<HTMLDivEl
 
 export function HealthCinematicHero({ 
   brandName = "HealthHyperAI",
-  particleWords = DEFAULT_PARTICLE_WORDS,
+  tagline1 = "AI-Powered",
+  tagline2 = "Health Revolution",
   cardHeading = "Your Health, Reimagined.",
   cardDescription = (
     <>
@@ -250,14 +249,16 @@ export function HealthCinematicHero({
     const isMobile = window.innerWidth < 768;
 
     const ctx = gsap.context(() => {
-      gsap.set(".particle-hero-canvas", { autoAlpha: 0, scale: 0.85, filter: "blur(20px)" });
+      gsap.set(".text-ai-powered", { autoAlpha: 0, y: 60, scale: 0.85, filter: "blur(20px)" });
+      gsap.set(".text-revolution", { autoAlpha: 1, clipPath: "inset(0 100% 0 0)" });
       gsap.set(".main-card", { y: window.innerHeight + 200, autoAlpha: 1 });
       gsap.set([".card-left-text", ".card-right-text", ".mockup-scroll-wrapper", ".floating-badge", ".phone-widget"], { autoAlpha: 0 });
       gsap.set(".cta-wrapper", { autoAlpha: 0, scale: 0.8, filter: "blur(30px)" });
 
       const introTl = gsap.timeline({ delay: 0.3 });
       introTl
-        .to(".particle-hero-canvas", { duration: 2.0, autoAlpha: 1, scale: 1, filter: "blur(0px)", ease: "expo.out" });
+        .to(".text-ai-powered", { duration: 1.8, autoAlpha: 1, y: 0, scale: 1, filter: "blur(0px)", ease: "expo.out" })
+        .to(".text-revolution", { duration: 1.4, clipPath: "inset(0 0% 0 0)", ease: "power4.inOut" }, "-=1.0");
 
       const scrollTl = gsap.timeline({
         scrollTrigger: {
@@ -317,11 +318,14 @@ export function HealthCinematicHero({
       <div className="film-grain" aria-hidden="true" />
       <div className="bg-grid-health absolute inset-0 z-0 pointer-events-none opacity-50" aria-hidden="true" />
 
-      {/* Hero Texts - Particle Effect */}
-      <div className="hero-text-wrapper absolute z-10 flex items-center justify-center w-screen h-[200px] md:h-[300px] lg:h-[400px] px-4">
-        <div className="particle-hero-canvas gsap-reveal w-full h-full max-w-[900px]">
-          <ParticleTextEffect words={particleWords} />
-        </div>
+      {/* Hero Texts */}
+      <div className="hero-text-wrapper absolute z-10 flex flex-col items-center justify-center text-center w-screen px-4">
+        <h1 className="text-ai-powered gsap-reveal text-3d-health text-5xl md:text-7xl lg:text-[6rem] font-bold tracking-tight mb-2">
+          {tagline1}
+        </h1>
+        <h1 className="text-revolution gsap-reveal text-health-glow text-5xl md:text-7xl lg:text-[6rem] font-extrabold tracking-tighter">
+          {tagline2}
+        </h1>
       </div>
 
       {/* CTA Buttons */}

@@ -171,7 +171,7 @@ const INJECTED_STYLES = `
   }
 `;
 
-export interface HealthCinematicHeroProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface HealthCinematicHeroProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'particleWords'> {
   brandName?: string;
   tagline1?: string;
   tagline2?: string;
@@ -181,6 +181,7 @@ export interface HealthCinematicHeroProps extends React.HTMLAttributes<HTMLDivEl
   metricLabel?: string;
   ctaHeading?: string;
   ctaDescription?: string;
+  particleWords?: string[];
 }
 
 export function HealthCinematicHero({ 
@@ -199,7 +200,8 @@ export function HealthCinematicHero({
   metricLabel = "Calories Today",
   ctaHeading = "Start Your Journey",
   ctaDescription = "Transform your wellness with AI-powered health tracking. Join thousands already on their journey.",
-  className, 
+  className,
+  particleWords,
   ...props 
 }: HealthCinematicHeroProps) {
   

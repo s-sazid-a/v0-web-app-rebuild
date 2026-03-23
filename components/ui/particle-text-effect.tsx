@@ -308,9 +308,8 @@ export function ParticleTextEffect({
         ref={canvasRef}
         style={{
           width: width,
-          height: height,
           maxWidth: "100%",
-          height: "auto",
+          aspectRatio: `${width}/${height}`,
         }}
         className="cursor-crosshair"
       />

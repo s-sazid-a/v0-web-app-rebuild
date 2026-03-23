@@ -6,7 +6,7 @@ import { ArrowRight, Play, Star, Heart, Activity, Scan, Wifi, Battery, Zap } fro
 
 export function HeroSection() {
   return (
-    <section className="min-h-screen relative overflow-hidden bg-[#0A0E17] pt-20">
+    <section id="home" className="min-h-screen relative overflow-hidden bg-[#0A0E17] pt-20">
       {/* Animated background elements */}
       <div className="absolute inset-0">
         {/* Grid pattern */}

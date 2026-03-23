@@ -10,14 +10,17 @@ import { RecommendationCard } from "@/components/dashboard/recommendation-card"
 import { MealCard } from "@/components/dashboard/meal-card"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import { useState, useEffect } from "react"
 
 export default function DashboardPage() {
-  const getGreeting = () => {
+  const [greeting, setGreeting] = useState("Welcome")
+
+  useEffect(() => {
     const hour = new Date().getHours()
-    if (hour < 12) return "Good morning"
-    if (hour < 18) return "Good afternoon"
-    return "Good evening"
-  }
+    if (hour < 12) setGreeting("Good morning")
+    else if (hour < 18) setGreeting("Good afternoon")
+    else setGreeting("Good evening")
+  }, [])
 
   return (
     <div className="space-y-8">
@@ -25,7 +28,7 @@ export default function DashboardPage() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-3xl font-bold text-white mb-2">
-            {getGreeting()}, Alex
+            {greeting}, Alex
           </h1>
           <p className="text-gray-400">
             Here&apos;s your health overview for today

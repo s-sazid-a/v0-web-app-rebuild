@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Play, Star, Heart, Activity, Scan, Wifi, Battery, Zap } from "lucide-react"
+import { ParticleTextEffect } from "@/components/ui/particle-text-effect"
 
 export function HeroSection() {
   return (
@@ -35,11 +36,14 @@ export function HeroSection() {
               <span className="text-gray-300">AI-Powered Health Tracking</span>
             </div>
 
-            <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
-              <span className="gradient-text">AI-Powered</span>
-              <br />
-              <span className="text-white">Health Revolution</span>
-            </h1>
+            {/* Particle Text Effect - Interactive animated headline */}
+            <div className="w-full -my-8">
+              <ParticleTextEffect 
+                words={["HHAI", "AI-Powered", "Health Revolution", "Your Health. Smarter.", "HyperHealth AI"]}
+                width={600}
+                height={200}
+              />
+            </div>
 
             <p className="text-xl text-gray-400 max-w-xl leading-relaxed">
               Transform your wellness journey with cutting-edge AI technology that

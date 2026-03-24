@@ -430,8 +430,9 @@ export function HowItWorksSection() {
           {demos.map((demo, index) => (
             <div 
               key={demo.id}
+              id={demo.id === "scanner" ? "barcode-scanner" : demo.id === "recognition" ? "food-recognition" : "health-personalization"}
               className={cn(
-                "grid lg:grid-cols-2 gap-8 items-center mb-16 pb-16 border-b border-white/10 last:border-0 last:mb-0 last:pb-0",
+                "grid lg:grid-cols-2 gap-8 items-center mb-16 pb-16 border-b border-white/10 last:border-0 last:mb-0 last:pb-0 scroll-mt-24",
                 index % 2 === 1 && "lg:flex-row-reverse"
               )}
             >

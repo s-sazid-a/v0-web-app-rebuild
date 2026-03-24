@@ -29,7 +29,7 @@ const features: FeatureType[] = [
     gradient: "from-[#6E00FF] to-[#FF36B9]",
     tryNowAction: "how-it-works",
     tryNowHref: "/how-it-works#barcode-scanner",
-    seeDemoHref: "/dashboard/meals"
+    seeDemoHref: "/dashboard/meals#barcode-scanner"
   },
   {
     icon: Camera,
@@ -38,7 +38,7 @@ const features: FeatureType[] = [
     gradient: "from-[#00D8FF] to-[#6E00FF]",
     tryNowAction: "how-it-works",
     tryNowHref: "/how-it-works#food-recognition",
-    seeDemoHref: "/dashboard/meals"
+    seeDemoHref: "/dashboard/meals#food-recognition"
   },
   {
     icon: UserCog,
@@ -47,7 +47,7 @@ const features: FeatureType[] = [
     gradient: "from-[#FF36B9] to-[#00D8FF]",
     tryNowAction: "how-it-works",
     tryNowHref: "/how-it-works#health-personalization",
-    seeDemoHref: "/dashboard/profile"
+    seeDemoHref: "/dashboard/profile#health-personalization"
   },
   {
     icon: UtensilsCrossed,

@@ -62,6 +62,8 @@ export default function ProfilePage() {
 
   return (
     <div className="space-y-8">
+      {/* Anchor ID for deep linking from Features page */}
+      <div id="health-personalization" className="scroll-mt-24" />
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>

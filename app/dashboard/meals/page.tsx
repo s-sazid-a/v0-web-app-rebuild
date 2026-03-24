@@ -123,7 +123,9 @@ export default function MealsPage() {
 
   return (
     <div className="space-y-8">
-      {/* Header */}
+      {/* Header with anchor IDs for deep linking */}
+      <div id="barcode-scanner" className="scroll-mt-24" />
+      <div id="food-recognition" className="scroll-mt-24" />
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-3xl font-bold text-white mb-2">Meals</h1>

@@ -39,7 +39,7 @@ const demos = [
   {
     id: "personalized",
     icon: UserCog,
-    title: "Hyper-Personalized Health",
+    title: "Hyper Personalized Health",
     description: "Our AI builds a comprehensive health profile that evolves over time, providing increasingly personalized recommendations.",
     features: [
       "Dynamic profile adapting to your changing health status",

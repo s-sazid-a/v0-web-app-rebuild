@@ -24,7 +24,7 @@ type FeatureType = {
 const features: FeatureType[] = [
   {
     icon: Barcode,
-    title: "Barcode Scanner",
+    title: "Smart Barcode Scanner",
     description: "Instantly analyze packaged foods for nutritional information, allergens, and health impact with a simple scan.",
     gradient: "from-[#6E00FF] to-[#FF36B9]",
     tryNowAction: "how-it-works",
@@ -42,7 +42,7 @@ const features: FeatureType[] = [
   },
   {
     icon: UserCog,
-    title: "Health Personalization",
+    title: "Hyper Personalized Health",
     description: "Receive tailored health insights and recommendations based on your unique profile, goals, and progress.",
     gradient: "from-[#FF36B9] to-[#00D8FF]",
     tryNowAction: "how-it-works",
@@ -69,7 +69,7 @@ const features: FeatureType[] = [
   },
   {
     icon: BarChart3,
-    title: "Data Visualization",
+    title: "AI Data Visualization",
     description: "Track your progress with interactive, beautiful, and easy-to-understand health and nutrition dashboards.",
     gradient: "from-[#FF36B9] to-[#6E00FF]",
     tryNowAction: "modal",

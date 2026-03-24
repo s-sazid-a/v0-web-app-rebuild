@@ -138,7 +138,7 @@ export function Footer() {
         {/* Bottom */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-400 text-sm">
-            2024 HealthHyperAI. All rights reserved.
+            2026 HealthHyperAI. All rights reserved.
           </p>
           <p className="text-gray-400 text-sm">
             Made by Sazid

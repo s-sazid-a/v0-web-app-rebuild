@@ -141,7 +141,7 @@ export function Footer() {
             2024 HealthHyperAI. All rights reserved.
           </p>
           <p className="text-gray-400 text-sm">
-            Made with <Heart className="w-4 h-4 inline text-[#FF36B9]" /> for VIBECODE Hackathon
+            Made by Sazid
           </p>
         </div>
       </div>

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { ArrowRight, Barcode, Camera, UserCog, UtensilsCrossed, Users, BarChart3, Play } from "lucide-react"
+import { ArrowRight, Barcode, Camera, UserCog, UtensilsCrossed, Users, BarChart3, Play, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { MealPlannerDemo } from "@/components/demos/meal-planner-demo"
@@ -13,11 +13,12 @@ type FeatureType = {
   title: string
   description: string
   gradient: string
-  tryNowText: string
-  tryNowHref: string
-  demoText: string
-  hasDemo: boolean
-  demoType?: "meal-planner" | "expert-consultations" | "data-visualization"
+  // "Try Now" - opens interactive demo modal OR links to How It Works
+  tryNowAction: "modal" | "how-it-works"
+  tryNowHref?: string // only used if tryNowAction is "how-it-works"
+  demoType?: "meal-planner" | "expert-consultations" | "data-visualization" // only used if tryNowAction is "modal"
+  // "See Demo" - links to respective section in Demo App (dashboard)
+  seeDemoHref: string
 }
 
 const features: FeatureType[] = [
@@ -26,63 +27,54 @@ const features: FeatureType[] = [
     title: "Barcode Scanner",
     description: "Instantly analyze packaged foods for nutritional information, allergens, and health impact with a simple scan.",
     gradient: "from-[#6E00FF] to-[#FF36B9]",
-    tryNowText: "Try Now",
-    tryNowHref: "/how-it-works",
-    demoText: "See Demo",
-    hasDemo: false
+    tryNowAction: "how-it-works",
+    tryNowHref: "/how-it-works#barcode-scanner",
+    seeDemoHref: "/dashboard/meals"
   },
   {
     icon: Camera,
     title: "AI Food Recognition",
     description: "Point your camera at any meal to get real-time nutritional breakdown and personalized recommendations.",
     gradient: "from-[#00D8FF] to-[#6E00FF]",
-    tryNowText: "Try Now",
-    tryNowHref: "/how-it-works",
-    demoText: "See Demo",
-    hasDemo: false
+    tryNowAction: "how-it-works",
+    tryNowHref: "/how-it-works#food-recognition",
+    seeDemoHref: "/dashboard/meals"
   },
   {
     icon: UserCog,
     title: "Health Personalization",
     description: "Receive tailored health insights and recommendations based on your unique profile, goals, and progress.",
     gradient: "from-[#FF36B9] to-[#00D8FF]",
-    tryNowText: "Try Now",
-    tryNowHref: "/how-it-works",
-    demoText: "See Demo",
-    hasDemo: false
+    tryNowAction: "how-it-works",
+    tryNowHref: "/how-it-works#health-personalization",
+    seeDemoHref: "/dashboard/profile"
   },
   {
     icon: UtensilsCrossed,
     title: "AI Meal Planning",
     description: "Let our AI create perfect meal plans matching your dietary requirements, preferences, and nutritional needs.",
     gradient: "from-[#6E00FF] to-[#00D8FF]",
-    tryNowText: "Try Now",
-    tryNowHref: "/dashboard/meals",
-    demoText: "See Demo",
-    hasDemo: true,
-    demoType: "meal-planner"
+    tryNowAction: "modal",
+    demoType: "meal-planner",
+    seeDemoHref: "/dashboard/meals"
   },
   {
     icon: Users,
     title: "Expert Consultations",
     description: "Connect with certified nutritionists and health coaches for personalized guidance and support.",
     gradient: "from-[#00D8FF] to-[#FF36B9]",
-    tryNowText: "Try Now",
-    tryNowHref: "/dashboard/insights",
-    demoText: "See Demo",
-    hasDemo: true,
-    demoType: "expert-consultations"
+    tryNowAction: "modal",
+    demoType: "expert-consultations",
+    seeDemoHref: "/dashboard/insights"
   },
   {
     icon: BarChart3,
     title: "Data Visualization",
     description: "Track your progress with interactive, beautiful, and easy-to-understand health and nutrition dashboards.",
     gradient: "from-[#FF36B9] to-[#6E00FF]",
-    tryNowText: "Try Now",
-    tryNowHref: "/dashboard/metrics",
-    demoText: "See Demo",
-    hasDemo: true,
-    demoType: "data-visualization"
+    tryNowAction: "modal",
+    demoType: "data-visualization",
+    seeDemoHref: "/dashboard/metrics"
   },
 ]
 
@@ -91,17 +83,19 @@ export function FeaturesSection() {
   const [expertConsultationsOpen, setExpertConsultationsOpen] = useState(false)
   const [dataVisualizationOpen, setDataVisualizationOpen] = useState(false)
 
-  const handleDemoClick = (demoType: FeatureType["demoType"]) => {
-    switch (demoType) {
-      case "meal-planner":
-        setMealPlannerOpen(true)
-        break
-      case "expert-consultations":
-        setExpertConsultationsOpen(true)
-        break
-      case "data-visualization":
-        setDataVisualizationOpen(true)
-        break
+  const handleTryNowClick = (feature: FeatureType) => {
+    if (feature.tryNowAction === "modal" && feature.demoType) {
+      switch (feature.demoType) {
+        case "meal-planner":
+          setMealPlannerOpen(true)
+          break
+        case "expert-consultations":
+          setExpertConsultationsOpen(true)
+          break
+        case "data-visualization":
+          setDataVisualizationOpen(true)
+          break
+      }
     }
   }
 
@@ -145,33 +139,36 @@ export function FeaturesSection() {
 
                   {/* Two buttons: Try Now and See Demo */}
                   <div className="flex gap-3 mt-auto">
-                    <Link href={feature.tryNowHref} className="flex-1">
+                    {/* Try Now Button - opens modal OR links to How It Works */}
+                    {feature.tryNowAction === "modal" ? (
+                      <Button
+                        onClick={() => handleTryNowClick(feature)}
+                        className="flex-1 bg-gradient-to-r from-[#6E00FF] to-[#00D8FF] text-white hover:opacity-90"
+                      >
+                        <Sparkles className="mr-2 w-4 h-4" />
+                        Try Now
+                      </Button>
+                    ) : (
+                      <Link href={feature.tryNowHref || "/how-it-works"} className="flex-1">
+                        <Button
+                          className="w-full bg-gradient-to-r from-[#6E00FF] to-[#00D8FF] text-white hover:opacity-90"
+                        >
+                          <Sparkles className="mr-2 w-4 h-4" />
+                          Try Now
+                        </Button>
+                      </Link>
+                    )}
+
+                    {/* See Demo Button - links to respective section in Demo App (dashboard) */}
+                    <Link href={feature.seeDemoHref} className="flex-1">
                       <Button
                         variant="outline"
                         className="w-full border-white/20 text-white hover:bg-white/10 hover:border-white/30"
                       >
-                        {feature.tryNowText}
-                        <ArrowRight className="ml-2 w-4 h-4" />
+                        <Play className="mr-2 w-4 h-4" />
+                        See Demo
                       </Button>
                     </Link>
-                    {feature.hasDemo ? (
-                      <Button
-                        onClick={() => handleDemoClick(feature.demoType)}
-                        className="flex-1 bg-gradient-to-r from-[#6E00FF] to-[#00D8FF] text-white hover:opacity-90"
-                      >
-                        <Play className="mr-2 w-4 h-4" />
-                        {feature.demoText}
-                      </Button>
-                    ) : (
-                      <Link href={feature.tryNowHref} className="flex-1">
-                        <Button
-                          className="w-full bg-gradient-to-r from-[#6E00FF] to-[#00D8FF] text-white hover:opacity-90"
-                        >
-                          <Play className="mr-2 w-4 h-4" />
-                          {feature.demoText}
-                        </Button>
-                      </Link>
-                    )}
                   </div>
                 </div>
 

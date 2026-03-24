@@ -1,4 +1,4 @@
-https://v0-hyper-health-daftlu5rz-s-sazid-as-projects.vercel.app/
+v0-hyper-health-ai.vercel.app/
 
 # v0-web-app-rebuild
 
